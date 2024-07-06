@@ -22,7 +22,22 @@ class data_read:
     def file_name(self, value: str) -> None:
         self._file_path = value
 
+
+class csv_file_reader(data_read):
+    def __init__(self, file_path: str, file_name: str) -> None:
+        super().__init__(file_path, file_name)
+
     @property
     def data_read_csv(self) -> pd.DataFrame:
         df = pd.read_csv(self.file_path+self.file_name)
+        return df
+
+
+class excel_file_reader(data_read):
+    def __init__(self, file_path: str, file_name: str) -> None:
+        super().__init__(file_path, file_name)
+
+    @property
+    def data_read_excel(self) -> pd.DataFrame:
+        df = pd.read_excel(self.file_path+self.file_name)
         return df
